@@ -6,15 +6,14 @@ tasks = [
     { "description": "Walk Dog", "completed": True, "time_taken": 60 },
 ]
 
-def print_task(task):
+def print_task(task, one_line = True):
     completed_msg = "done" if task['completed'] else "UNCOMPLETED"
-    print(f"* {task['description']:25s}\t{completed_msg:11s}\t[{task['time_taken']:2d}]")
-
-def display_task(task):
-    completed_msg = "done" if task['completed'] else "UNCOMPLETED"
-    print(f"* description:  {task['description']}")
-    print(f"  status:       {completed_msg}")
-    print(f"  time taken:   {task['time_taken']:2d}")
+    if one_line:
+        print(f"* {task['description']:25s}\t{completed_msg:11s}\t[{task['time_taken']:2d}]")
+    else:
+        print(f"* description:  {task['description']}")
+        print(f"  status:       {completed_msg}")
+        print(f"  time taken:   {task['time_taken']:2d}")
 
 def print_tasks(tasks=tasks):
     for task in tasks:
@@ -54,7 +53,7 @@ def find_task_by_description(description):
 
 def print_task_by_description(description):
     found_task = find_task_by_description(description)
-    display_task(found_task)
+    print_task(found_task, one_line=False)
 
 def mark_task_as_complete(description):
     found_task = find_task_by_description(description)
