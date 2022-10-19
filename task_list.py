@@ -10,37 +10,51 @@ def print_task(task):
     completed_msg = "done" if task['completed'] else "UNCOMPLETED"
     print(f"* {task['description']:25s}\t{completed_msg:11s}\t[{task['time_taken']:2d}]")
 
-def print_uncompleted_tasks():
-    for task in tasks:
-        if task['completed'] == False:
-            print_task(task)
+def display_task(task):
+    completed_msg = "done" if task['completed'] else "UNCOMPLETED"
+    print(f"* description:  {task['description']}")
+    print(f"  status:       {completed_msg}")
+    print(f"  time taken:   {task['time_taken']:2d}")
 
-def print_completed_tasks():
-    for task in tasks:
-        if task['completed']:
-            print_task(task)
-
-def print_all_tasks():
+def print_tasks(tasks=tasks):
     for task in tasks:
         print_task(task)
+    print(f"{len(tasks):d} tasks")
+
+def print_uncompleted_tasks():
+    print_tasks([task for task in tasks if task['completed'] == False])
+    # for task in tasks:
+    #     if task['completed'] == False:
+    #         print_task(task)
+
+def print_completed_tasks():
+    print_tasks([task for task in tasks if task['completed']])
+    # for task in tasks:
+    #     if task['completed']:
+    #         print_task(task)
 
 def print_tasks_minimum_time_taken(minimum_time_taken):
-    for task in tasks:
-        if task['time_taken'] >= minimum_time_taken:
-            print_task(task)
+    print_tasks([task for task in tasks if task['time_taken'] >= minimum_time_taken])
+    # for task in tasks:
+    #     if task['time_taken'] >= minimum_time_taken:
+    #         print_task(task)
 
 def search_list(list, predicate):
+    # [ return item for item in list ]
     for item in list:
         if predicate(item):
             return item
     return None
 
+def search_list_of_dicts(list, key, value):
+    return search_list(list, lambda item: item[key] == value)
+
 def find_task_by_description(description):
-    return search_list(tasks, lambda task: task['description'] == description)
+    return search_list_of_dicts(tasks, 'description', description)
 
 def print_task_by_description(description):
     found_task = find_task_by_description(description)
-    print_task(found_task)
+    display_task(found_task)
 
 def mark_task_as_complete(description):
     found_task = find_task_by_description(description)
@@ -62,7 +76,7 @@ print_completed_tasks()
 print()
 
 print("=== ALL TASKS ===")
-print_all_tasks()
+print_tasks()
 print()
 
 print("=== TASKS THAT TAKE AT LEAST 30 MINUTES ===")
@@ -80,5 +94,5 @@ print("=== ADDING TASK ===")
 add_task(description="Eat Supper", completed=False, time_taken=15)
 
 print("=== ALL TASKS ===")
-print_all_tasks()
+print_tasks()
 print()
