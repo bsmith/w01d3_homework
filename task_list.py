@@ -39,6 +39,8 @@ def print_tasks_minimum_time_taken(minimum_time_taken):
     #         print_task(task)
 
 def first(list):
+    if len(list) == 0:
+        return None
     return list[0]
 
 def search_list(list, predicate):
