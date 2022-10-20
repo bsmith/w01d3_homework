@@ -94,7 +94,7 @@ print()
 print("=== MARKING \"Wash Dishes\" AS COMPLETE ===")
 mark_task_as_complete("Wash Dishes")
 
-print("=== ADDING TASK ===")
+print("=== ADDING TASK \"Eat Supper\" ===")
 add_task(description="Eat Supper", time_taken=15)
 
 print("=== ALL TASKS ===")
