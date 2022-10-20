@@ -38,12 +38,15 @@ def print_tasks_minimum_time_taken(minimum_time_taken):
     #     if task['time_taken'] >= minimum_time_taken:
     #         print_task(task)
 
+def first(list):
+    return list[0]
+
 def search_list(list, predicate):
-    # [ return item for item in list ]
-    for item in list:
-        if predicate(item):
-            return item
-    return None
+    return first([ item for item in list if predicate(item)])
+    #for item in list:
+    #    if predicate(item):
+    #        return item
+    #return None
 
 def search_list_of_dicts(list, key, value):
     return search_list(list, lambda item: item[key] == value)
@@ -59,7 +62,7 @@ def mark_task_as_complete(description):
     found_task = find_task_by_description(description)
     found_task['completed'] = True
 
-def add_task(description, completed, time_taken):
+def add_task(description, time_taken, completed=False):
     tasks.append({
         'description': description,
         'completed': completed,
@@ -90,7 +93,7 @@ print("=== MARKING \"Wash Dishes\" AS COMPLETE ===")
 mark_task_as_complete("Wash Dishes")
 
 print("=== ADDING TASK ===")
-add_task(description="Eat Supper", completed=False, time_taken=15)
+add_task(description="Eat Supper", time_taken=15)
 
 print("=== ALL TASKS ===")
 print_tasks()
