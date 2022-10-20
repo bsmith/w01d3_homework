@@ -32,7 +32,7 @@ def print_completed_tasks():
     #     if task['completed']:
     #         print_task(task)
 
-def print_tasks_minimum_time_taken(minimum_time_taken):
+def print_tasks_taking_longer_than(minimum_time_taken):
     print_tasks([task for task in tasks if task['time_taken'] >= minimum_time_taken])
     # for task in tasks:
     #     if task['time_taken'] >= minimum_time_taken:
@@ -84,7 +84,7 @@ print_tasks()
 print()
 
 print("=== TASKS THAT TAKE AT LEAST 30 MINUTES ===")
-print_tasks_minimum_time_taken(minimum_time_taken=30)
+print_tasks_taking_longer_than(minimum_time_taken=30)
 print()
 
 print("=== DETAILS OF \"Make Dinner\" ===")
